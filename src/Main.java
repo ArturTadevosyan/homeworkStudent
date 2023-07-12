@@ -73,84 +73,60 @@ public class Main {
         System.out.println("====================     Start     ======================");
 
 
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Biggest Student");
-//        service.studentInfo(service.biggest(new Student[]{student, student1, student2, student3, student4}));
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Youngest Student");
-//        service.studentInfo(service.youngest(new Student[]{student, student1, student2, student3, student4}));
-//
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Biggest Female Student");
-//        service.studentInfo(service.biggerByGender(new Student[]{student, student1, student2, student3, student4}, 'F'));
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Biggest Male Student");
-//        service.studentInfo(service.biggerByGender(new Student[]{student, student1, student2, student3, student4}, 'M'));
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Youngest Female Student");
-//        service.studentInfo(service.youngestByGender(new Student[]{student, student1, student2, student3, student4}, 'F'));
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Youngest Male Student");
-//        service.studentInfo(service.youngestByGender(new Student[]{student, student1, student2, student3, student4}, 'M'));
-//
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Biggest Mark Student");
-//        service.studentInfo(service.biggestMark(new Student[]{student, student1, student2, student3, student4}));
-//
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Is Armenian Students");
-//        service.printStudentArray(service.checkedIsArmenian(new Student[]{student, student1, student2, student3, student4}));
-//
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show All Female Students");
-//        service.printStudentArray(service.allFemale(new Student[]{student, student1, student2, student3, student4}));
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show All Male Students");
-//        service.printStudentArray(service.allMale(new Student[]{student, student1, student2, student3, student4}));
-//
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Sorted Students By Mark Ascending ");
-//        service.printStudentArray(service.sortedAscendingByMark(new Student[]{student, student1, student2, student3, student4}));
-//
-//        System.out.println("=======================================");
-//        System.out.println("Sorted Students By Mark Descending");
-//        service.printStudentArray(service.sortedDescendingByMark(new Student[]{student, student1, student2, student3, student4}));
-//
-//
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Biggest Male Student");
-//        service.studentInfo(service.findByGender(new Student[]{student, student1, student2, student3, student4}, 'M','>'));
-//
-//        System.out.println("=======================================");
-//        System.out.println("Show Youngest Male Student");
-//        service.studentInfo(service.findByGender(new Student[]{student, student1, student2, student3, student4}, 'M','<'));
+
+        System.out.println("=======================================");
+        System.out.println("Show Biggest Student");
+        service.studentInfo(service.biggest(new Student[]{student, student1, student2, student3, student4}));
+
+        System.out.println("=======================================");
+        System.out.println("Show Youngest Student");
+        service.studentInfo(service.youngest(new Student[]{student, student1, student2, student3, student4}));
+
+
+        System.out.println("=======================================");
+        System.out.println("Show Biggest Mark Student");
+        service.studentInfo(service.biggestMark(new Student[]{student, student1, student2, student3, student4}));
+
+
+        System.out.println("=======================================");
+        System.out.println("Show Is Armenian Students");
+        service.printStudentArray(service.checkedIsArmenian(new Student[]{student, student1, student2, student3, student4}));
+
+
+        System.out.println("=======================================");
+        System.out.println("Show Biggest Male Student");
+        service.studentInfo(service.findByGender(new Student[]{student, student1, student2, student3, student4}, 'M','>'));
+
+        System.out.println("=======================================");
+        System.out.println("Show Biggest Female Student");
+        service.studentInfo(service.findByGender(new Student[]{student, student1, student2, student3, student4}, 'F','>'));
+
+        System.out.println("=======================================");
+        System.out.println("Show Youngest Male Student");
+        service.studentInfo(service.findByGender(new Student[]{student, student1, student2, student3, student4}, 'M','<'));
+
+        System.out.println("=======================================");
+        System.out.println("Show Youngest Female Student");
+        service.studentInfo(service.findByGender(new Student[]{student, student1, student2, student3, student4}, 'F','<'));
 
 
         System.out.println("=======================================");
         System.out.println("Show All Female Students");
-        service.printStudentArray(service.byGender(new Student[]{student, student1, student2, student3, student4},'F'));
+        service.printStudentArray(service.showAllByGender(new Student[]{student, student1, student2, student3, student4},'F'));
 
         System.out.println("=======================================");
         System.out.println("Show All Male Students");
-        service.printStudentArray(service.byGender(new Student[]{student, student1, student2, student3, student4},'M'));
+        service.printStudentArray(service.showAllByGender(new Student[]{student, student1, student2, student3, student4},'M'));
+
+
+        // Sorted
+        System.out.println("=======================================");
+        System.out.println("Sorted Students By Mark Ascending ");
+        service.printStudentArray(service.sortedAscendingByMark(new Student[]{student, student1, student2, student3, student4}));
+
+        System.out.println("=======================================");
+        System.out.println("Sorted Students By Mark Descending");
+        service.printStudentArray(service.sortedDescendingByMark(new Student[]{student, student1, student2, student3, student4}));
 
 
     }

@@ -119,43 +119,6 @@ public class StudentService {
         return temp;
     }
 
-    public Student biggerByGender(Student[] students, char gender) {
-        Student min = null;
-        int checkMin = 0;
-        for (Student student : students) {
-            if (student.getGender() == gender) {
-                if (checkMin == 0) {
-                    min = student;
-                    checkMin = 1;
-                } else {
-                    if (min.getYear() > student.getYear()) {
-                        min = student;
-                    }
-                }
-            }
-        }
-        return min;
-    }
-
-    public Student youngestByGender(Student[] students, char gender) {
-        Student min = null;
-        int checkMin = 0;
-        for (Student student : students) {
-            if (student.getGender() == gender) {
-                if (checkMin == 0) {
-                    min = student;
-                    checkMin = 1;
-                } else {
-                    if (min.getYear() < student.getYear()) {
-                        min = student;
-                    }
-                }
-            }
-        }
-        return min;
-    }
-
-
     //--------------------------------------------------------------------------------------------------------------
 
 
@@ -193,7 +156,7 @@ public class StudentService {
 
     //--------------------------------------------------------------------------------------------------------------
     //Stugel
-    public Student[] byGender(Student[] students, char gender) {
+    public Student[] showAllByGender(Student[] students, char gender) {
         int count = 0;
         Student[] studentArray = new Student[]{};
         for (Student student : students) {
@@ -214,48 +177,6 @@ public class StudentService {
         return studentArray;
     }
 
-
-    public Student[] allFemale(Student[] students) {
-        int count = 0;
-        Student[] studentArray = new Student[]{};
-        for (Student student : students) {
-            if (student.getGender() == 'F') {
-                count++;
-            }
-        }
-        if (count != 0) {
-            int i = 0;
-            studentArray = new Student[count];
-            for (Student student : students) {
-                if (student.getGender() == 'F') {
-                    studentArray[i] = student;
-                    i++;
-                }
-            }
-        }
-        return studentArray;
-    }
-
-    public Student[] allMale(Student[] students) {
-        int count = 0;
-        Student[] studentArray = new Student[]{};
-        for (Student student : students) {
-            if (student.getGender() == 'M') {
-                count++;
-            }
-        }
-        if (count != 0) {
-            int i = 0;
-            studentArray = new Student[count];
-            for (Student student : students) {
-                if (student.getGender() == 'M') {
-                    studentArray[i] = student;
-                    i++;
-                }
-            }
-        }
-        return studentArray;
-    }
     //--------------------------------------------------------------------------------------------------------------
 
 
