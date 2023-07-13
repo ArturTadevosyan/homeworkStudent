@@ -59,6 +59,7 @@ public class StudentService {
         return students;
     }
 
+
     public Student[] sortedDescendingByMark(Student[] students) {
         Student temp;
         for (int i = 0; i < students.length; i++) {
@@ -75,7 +76,9 @@ public class StudentService {
 
     //--------------------------------------------------------------------------------------------------------------
 
-    public Student biggest(Student[] students) {
+    public Student findByYearBiggestStudent(Student[] students) {
+        System.out.println("Find By Biggest year Student");
+
         Student max = students[0];
         for (int i = 1; i < students.length; i++) {
             if (max.getYear() > students[i].getYear()) {
@@ -85,7 +88,9 @@ public class StudentService {
         return max;
     }
 
-    public Student youngest(Student[] students) {
+    public Student findByYearYoungestStudent(Student[] students) {
+        System.out.println("Find By Youngest year Student");
+
         Student min = students[0];
         for (int i = 1; i < students.length; i++) {
             if (min.getYear() < students[i].getYear()) {
@@ -98,27 +103,30 @@ public class StudentService {
 
     //--------------------------------------------------------------------------------------------------------------
 
-    public Student findByGender(Student[] students, char gender, char sign) {
+    public Student findByGenderAndYear(Student[] students, char gender, char sign) {
+        String genderName = (gender == constVariable.getFemale()) ? "Female" : "Male";
+
+        String bigOrLowSign = constVariable.isBiggerSign(sign) ? "biggest" : "youngest";
+
+        System.out.println("Find By Gender '" + genderName + "' and By '" + bigOrLowSign + "' year student");
         Student temp = null;
-        boolean checkTemp = false;
-        for (Student student : students) {
-            if (student.getGender() == gender) {
-                if (!checkTemp) {
-                    temp = student;
-                    checkTemp = true;
-                } else {
-                    if (constVariable.isBiggerSign(sign)) {
-                        if (temp.getYear() > student.getYear()) {
-                            temp = student;
-                        }
-                    } else if (constVariable.isYoungerSign(sign)) {
-                        if (temp.getYear() < student.getYear()) {
-                            temp = student;
-                        }
+        if (constVariable.isBiggerSign(sign) || constVariable.isYoungerSign(sign)) {
+            boolean checkTemp = false;
+            for (Student student : students) {
+                if (student.getGender() == gender) {
+                    if (!checkTemp) {
+                        temp = student;
+                        checkTemp = true;
                     } else {
-                        System.out.println("Not correct symbol,you can set only two symbol  > or < | return default Student class");
-                        temp = new Student();
-                        break;
+                        if (constVariable.isBiggerSign(sign)) {
+                            if (temp.getYear() > student.getYear()) {
+                                temp = student;
+                            }
+                        } else if (constVariable.isYoungerSign(sign)) {
+                            if (temp.getYear() < student.getYear()) {
+                                temp = student;
+                            }
+                        }
                     }
                 }
             }
@@ -129,7 +137,9 @@ public class StudentService {
     //--------------------------------------------------------------------------------------------------------------
 
 
-    public Student biggestMark(Student[] students) {
+    public Student findByBiggestMarkStudent(Student[] students) {
+        System.out.println("Find Biggest Mark Student");
+
         Student maxMark = students[0];
         for (int i = 1; i < students.length; i++) {
             if (maxMark.getMark() < students[i].getMark()) {
@@ -139,7 +149,9 @@ public class StudentService {
         return maxMark;
     }
 
-    public Student lowestMark(Student[] students) {
+    public Student findByLowerMarkStudent(Student[] students) {
+        System.out.println("Find Lower Mark Student");
+
         Student minMark = students[0];
         for (int i = 1; i < students.length; i++) {
             if (minMark.getMark() > students[i].getMark()) {
@@ -152,22 +164,25 @@ public class StudentService {
 
     //--------------------------------------------------------------------------------------------------------------
 
-    public Student[] checkedIsArmenian(Student[] students) {
+    public Student[] findIsArmenianStudents(Student[] students) {
+        System.out.println("Find Is Armenian Students");
+
         int count = 0;
-        Student[] studentArray = new Student[]{};
         for (Student student : students) {
             if (student.isArmenian()) {
                 count++;
             }
         }
-        if (count != 0) {
-            int i = 0;
-            studentArray = new Student[count];
-            for (Student student : students) {
-                if (student.isArmenian()) {
-                    studentArray[i] = student;
-                    i++;
-                }
+        if (count == 0) {
+            return new Student[]{};
+        }
+
+        int i = 0;
+        Student[] studentArray = new Student[count];
+        for (Student student : students) {
+            if (student.isArmenian()) {
+                studentArray[i] = student;
+                i++;
             }
         }
         return studentArray;
@@ -176,44 +191,49 @@ public class StudentService {
 
     //--------------------------------------------------------------------------------------------------------------
 
-    public Student[] showAllByGender(Student[] students, char gender) {
+    public Student[] findAllStudentsByGender(Student[] students, char gender) {
+        String genderName = (gender == constVariable.getFemale()) ? "Female" : "Male";
+
+        System.out.println("Find All By gender  '" + genderName + "' Students");
+
         int count = 0;
-        Student[] studentArray = new Student[]{};
         for (Student student : students) {
             if (student.getGender() == gender) {
                 count++;
             }
         }
-        if (count != 0) {
-            int i = 0;
-            studentArray = new Student[count];
-            for (Student student : students) {
-                if (student.getGender() == gender) {
-                    studentArray[i] = student;
-                    i++;
-                }
+        if (count == 0) {
+            return new Student[]{};
+        }
+        int i = 0;
+        Student[] studentArray = new Student[count];
+        for (Student student : students) {
+            if (student.getGender() == gender) {
+                studentArray[i] = student;
+                i++;
             }
         }
+
         return studentArray;
     }
 
     //--------------------------------------------------------------------------------------------------------------
 
 
-    public void printStudentArray(Student[] students) {
+    public void printingStudentArray(Student[] students) {
         for (Student student : students) {
-            studentInfo(student);
+            toString(student);
         }
     }
 
-    public void studentInfo(Student s) {
+    public void toString(Student s) {
         System.out.println(" Name : " + s.getName() +
                 "\n Surname : " + s.getSurname() +
                 "\n Year :  " + s.getYear() +
                 "\n Mark : " + s.getMark() +
                 "\n Is Armenian : " + (s.isArmenian() ? "YES" : "NO") +
-                "\n Gender : " + (s.getGender() == 'F' ? "Female" : "Male"));
-        System.out.println("----------------------------");
+                "\n Gender : " + (s.getGender() == 'F' ? "Female" : "Male") +
+                "\n ----------------------------");
     }
 
     //--------------------------------------------------------------------------------------------------------------

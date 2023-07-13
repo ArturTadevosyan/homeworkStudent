@@ -57,13 +57,5 @@ public class Student {
         this.gender = gender;
     }
 
-    public void setGenderMale() {
-        setGender(constVariable.getMale());
-    }
-
-    public void setGenderFemale() {
-        setGender(constVariable.getFemale());
-    }
-
 
 }
