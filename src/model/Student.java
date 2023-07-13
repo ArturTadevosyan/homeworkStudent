@@ -7,7 +7,7 @@ public class Student {
     private double mark;
     private boolean armenian;
     private char gender;
-
+    private ConstVariable constVariable = new ConstVariable();
 
     public String getName() {
         return name;
@@ -57,6 +57,13 @@ public class Student {
         this.gender = gender;
     }
 
+    public void setGenderMale() {
+        setGender(constVariable.getMale());
+    }
+
+    public void setGenderFemale() {
+        setGender(constVariable.getFemale());
+    }
 
 
 }

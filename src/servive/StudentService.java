@@ -1,10 +1,14 @@
 package servive;
 
+import model.ConstVariable;
 import model.Student;
 
 import java.util.Scanner;
 
 public class StudentService {
+    private ConstVariable constVariable = new ConstVariable();
+
+    //--------------------------------------------------------------------------------------------------------------
 
     public Student create() {
         Student student = new Student();
@@ -25,7 +29,7 @@ public class StudentService {
         System.out.println("Enter is armenian ");
         boolean armenian = scanner.nextBoolean();
 
-        System.out.println("Enter gender ");
+        System.out.println("Enter gender ( Female |  Male )");
         char gender = scanner.next().charAt(0);
 
         student.setName(name);
@@ -40,14 +44,15 @@ public class StudentService {
 
 
     //--------------------------------------------------------------------------------------------------------------
-    // bubble sorting
+
     public Student[] sortedAscendingByMark(Student[] students) {
+        Student temp;
         for (int i = 0; i < students.length; i++) {
             for (int j = 1; j < students.length - i; j++) {
                 if (students[j].getMark() > students[j - 1].getMark()) {
-                    double temp = students[j - 1].getMark();
-                    students[j - 1].setMark(students[j].getMark());
-                    students[j].setMark(temp);
+                    temp = students[j - 1];
+                    students[j - 1] = students[j];
+                    students[j] = temp;
                 }
             }
         }
@@ -55,12 +60,13 @@ public class StudentService {
     }
 
     public Student[] sortedDescendingByMark(Student[] students) {
+        Student temp;
         for (int i = 0; i < students.length; i++) {
             for (int j = 1; j < students.length - i; j++) {
                 if (students[j].getMark() < students[j - 1].getMark()) {
-                    double temp = students[j - 1].getMark();
-                    students[j - 1].setMark(students[j].getMark());
-                    students[j].setMark(temp);
+                    temp = students[j - 1];
+                    students[j - 1] = students[j];
+                    students[j] = temp;
                 }
             }
         }
@@ -91,26 +97,27 @@ public class StudentService {
 
 
     //--------------------------------------------------------------------------------------------------------------
-    //Stugel
-    public Student findByGender(Student[] students, char gender, char biggerOrYounger) {
+
+    public Student findByGender(Student[] students, char gender, char sign) {
         Student temp = null;
-        int checkTemp = 0;
+        boolean checkTemp = false;
         for (Student student : students) {
             if (student.getGender() == gender) {
-                if (checkTemp == 0) {
+                if (!checkTemp) {
                     temp = student;
-                    checkTemp = 1;
+                    checkTemp = true;
                 } else {
-                    if (biggerOrYounger == '>') {
+                    if (constVariable.isBiggerSign(sign)) {
                         if (temp.getYear() > student.getYear()) {
                             temp = student;
                         }
-                    } else if (biggerOrYounger == '<') {
+                    } else if (constVariable.isYoungerSign(sign)) {
                         if (temp.getYear() < student.getYear()) {
                             temp = student;
                         }
                     } else {
-                        System.out.println("Not correct symbol,you can set only two symbol  > or < ");
+                        System.out.println("Not correct symbol,you can set only two symbol  > or < | return default Student class");
+                        temp = new Student();
                         break;
                     }
                 }
@@ -131,6 +138,19 @@ public class StudentService {
         }
         return maxMark;
     }
+
+    public Student lowestMark(Student[] students) {
+        Student minMark = students[0];
+        for (int i = 1; i < students.length; i++) {
+            if (minMark.getMark() > students[i].getMark()) {
+                minMark = students[i];
+            }
+        }
+        return minMark;
+    }
+
+
+    //--------------------------------------------------------------------------------------------------------------
 
     public Student[] checkedIsArmenian(Student[] students) {
         int count = 0;
@@ -155,7 +175,7 @@ public class StudentService {
 
 
     //--------------------------------------------------------------------------------------------------------------
-    //Stugel
+
     public Student[] showAllByGender(Student[] students, char gender) {
         int count = 0;
         Student[] studentArray = new Student[]{};
@@ -195,5 +215,7 @@ public class StudentService {
                 "\n Gender : " + (s.getGender() == 'F' ? "Female" : "Male"));
         System.out.println("----------------------------");
     }
+
+    //--------------------------------------------------------------------------------------------------------------
 
 }
