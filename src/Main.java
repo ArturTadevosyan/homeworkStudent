@@ -1,6 +1,6 @@
 import model.ConstVariable;
 import model.Student;
-import servive.StudentService;
+import service.StudentService;
 
 public class Main {
 
